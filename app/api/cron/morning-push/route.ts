@@ -4,8 +4,9 @@ import { morningMessage, pickDailyMessage } from "@/lib/messages";
 import { wxpush } from "@/lib/wxpusher";
 
 // Trigger via:  curl -H "x-cron-secret: $CRON_SECRET" https://your-domain/api/cron/morning-push
-// Or via Vercel Cron (configured in vercel.json) with the secret in env.
+// Or via Vercel Cron / cron-job.org / Cloudflare Workers Cron, with the secret in env.
 
+export const runtime = "edge";
 export const dynamic = "force-dynamic";
 
 function authorized(req: Request) {
