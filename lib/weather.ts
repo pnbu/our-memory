@@ -19,28 +19,43 @@ export type WeatherDaily = {
   uvIndex: number;
 };
 
-const NOW = "https://devapi.qweather.com/v7/weather/now";
-const DAILY = "https://devapi.qweather.com/v7/weather/3d";
+// Older shared host. If you got a personal API host like
+// "abc123.re.qweatherapi.com" when you created your project, set
+// QWEATHER_HOST to that value in your env. Otherwise we use the default.
+const DEFAULT_HOST = "devapi.qweather.com";
 
 export async function getWeather(): Promise<{ now: WeatherNow; today: WeatherDaily; city: string }> {
   const key = process.env.QWEATHER_KEY;
   const location = process.env.QWEATHER_LOCATION_ID || "101010100";
   const city = process.env.QWEATHER_CITY_NAME || "你的城市";
+  const host = (process.env.QWEATHER_HOST || DEFAULT_HOST).replace(/^https?:\/\//, "");
   if (!key) throw new Error("QWEATHER_KEY is not set");
 
-  const headers = { "Accept-Encoding": "identity" };
-  const [nowRes, dailyRes] = await Promise.all([
-    fetch(`${NOW}?location=${location}&key=${key}`, { headers }),
-    fetch(`${DAILY}?location=${location}&key=${key}`, { headers }),
-  ]);
-  const nowData = await nowRes.json();
-  const dailyData = await dailyRes.json();
+  const nowUrl = `https://${host}/v7/weather/now?location=${location}&key=${key}`;
+  const dailyUrl = `https://${host}/v7/weather/3d?location=${location}&key=${key}`;
+
+  const [nowRes, dailyRes] = await Promise.all([fetch(nowUrl), fetch(dailyUrl)]);
+  const nowText = await nowRes.text();
+  const dailyText = await dailyRes.text();
+
+  let nowData: { code?: string; now?: Record<string, string> };
+  let dailyData: { code?: string; daily?: Array<Record<string, string>> };
+  try {
+    nowData = JSON.parse(nowText);
+    dailyData = JSON.parse(dailyText);
+  } catch {
+    throw new Error(
+      `QWeather returned non-JSON (host=${host}). now[${nowRes.status}]=${nowText.slice(0, 120)} daily[${dailyRes.status}]=${dailyText.slice(0, 120)}`
+    );
+  }
   if (nowData.code !== "200" || dailyData.code !== "200") {
-    throw new Error(`QWeather error: now=${nowData.code} daily=${dailyData.code}`);
+    throw new Error(
+      `QWeather API error (host=${host}). now=${JSON.stringify(nowData).slice(0, 200)} daily=${JSON.stringify(dailyData).slice(0, 200)}`
+    );
   }
 
-  const n = nowData.now;
-  const d = dailyData.daily[0];
+  const n = nowData.now!;
+  const d = dailyData.daily![0]!;
   return {
     city,
     now: {
