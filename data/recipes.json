@@ -1,0 +1,50 @@
+[
+  {
+    "id": "tomato-egg",
+    "name": "西红柿炒蛋",
+    "desc": "经典中的经典，酸甜下饭",
+    "tags": ["家常", "快手"],
+    "image": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=800",
+    "minutes": 10
+  },
+  {
+    "id": "kung-pao-chicken",
+    "name": "宫保鸡丁",
+    "desc": "花生酥脆，鸡丁滑嫩",
+    "tags": ["川菜", "下饭"],
+    "image": "https://images.unsplash.com/photo-1582450871972-ab5ca641643d?w=800",
+    "minutes": 25
+  },
+  {
+    "id": "braised-pork",
+    "name": "红烧肉",
+    "desc": "肥而不腻，入口即化",
+    "tags": ["硬菜", "需要时间"],
+    "image": "https://images.unsplash.com/photo-1625938144755-652e08e359b7?w=800",
+    "minutes": 60
+  },
+  {
+    "id": "fried-rice",
+    "name": "扬州炒饭",
+    "desc": "一人份的快乐",
+    "tags": ["快手", "主食"],
+    "image": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=800",
+    "minutes": 15
+  },
+  {
+    "id": "wonton-soup",
+    "name": "馄饨汤",
+    "desc": "热汤汤的，胃暖心也暖",
+    "tags": ["汤", "暖胃"],
+    "image": "https://images.unsplash.com/photo-1623341214825-9f4f963727da?w=800",
+    "minutes": 20
+  },
+  {
+    "id": "mapo-tofu",
+    "name": "麻婆豆腐",
+    "desc": "麻辣鲜香，配米饭绝了",
+    "tags": ["川菜", "快手"],
+    "image": "https://images.unsplash.com/photo-1582452835725-d39be60c8e1f?w=800",
+    "minutes": 20
+  }
+]

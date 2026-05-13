@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ================= Theme variables =================
+   Each theme defines the same set of CSS variables.
+   Switching is done via [data-theme="..."] on <html>.
+*/
+
+/* Theme 1: Soft Pink — 少女粉 (default, romantic) */
+:root,
+[data-theme="pink"] {
+  --c-bg: 255 244 246;
+  --c-surface: 255 255 255;
+  --c-fg: 60 33 41;
+  --c-muted: 154 116 130;
+  --c-accent: 244 114 152;
+  --c-accent-2: 255 182 193;
+  --c-border: 248 213 224;
+  --font-sans: ui-rounded, "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif;
+  --font-display: ui-rounded, "PingFang SC", system-ui, sans-serif;
+  --radius: 18px;
+  --shadow-soft: 0 10px 30px -10px rgba(244, 114, 152, 0.35);
+}
+
+/* Theme 2: Minimal White — 极简白 */
+[data-theme="minimal"] {
+  --c-bg: 250 250 250;
+  --c-surface: 255 255 255;
+  --c-fg: 17 17 17;
+  --c-muted: 115 115 115;
+  --c-accent: 17 17 17;
+  --c-accent-2: 64 64 64;
+  --c-border: 229 229 229;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "PingFang SC", sans-serif;
+  --font-display: ui-sans-serif, system-ui, sans-serif;
+  --radius: 4px;
+  --shadow-soft: 0 4px 16px -8px rgba(0, 0, 0, 0.12);
+}
+
+/* Theme 3: Retro Film — 复古胶片 */
+[data-theme="retro"] {
+  --c-bg: 36 30 26;
+  --c-surface: 51 42 36;
+  --c-fg: 244 226 198;
+  --c-muted: 184 158 124;
+  --c-accent: 230 168 95;
+  --c-accent-2: 200 90 62;
+  --c-border: 92 75 60;
+  --font-sans: "Georgia", "Songti SC", "STSong", serif;
+  --font-display: "Georgia", "Songti SC", serif;
+  --radius: 8px;
+  --shadow-soft: 0 8px 24px -8px rgba(0, 0, 0, 0.5);
+}
+
+html, body {
+  background-color: rgb(var(--c-bg));
+  color: rgb(var(--c-fg));
+  font-family: var(--font-sans);
+}
+
+* {
+  border-color: rgb(var(--c-border));
+}
+
+/* A few reusable component classes */
+.card {
+  background-color: rgb(var(--c-surface));
+  border: 1px solid rgb(var(--c-border));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  background: rgb(var(--c-accent));
+  color: rgb(var(--c-surface));
+  font-weight: 500;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.btn:hover { opacity: 0.9; }
+.btn:active { transform: scale(0.97); }
+
+.btn-ghost {
+  background: transparent;
+  color: rgb(var(--c-fg));
+  border: 1px solid rgb(var(--c-border));
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.625rem;
+  border-radius: 999px;
+  background: rgb(var(--c-accent-2) / 0.18);
+  color: rgb(var(--c-accent));
+  font-size: 0.75rem;
+}
