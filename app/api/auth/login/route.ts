@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { COOKIE_NAME, checkPassword, createSessionToken } from "@/lib/auth";
 
-export const runtime = "edge";
-
 export async function POST(req: Request) {
   const { password } = (await req.json().catch(() => ({}))) as { password?: string };
   if (!password) return NextResponse.json({ error: "缺少密码" }, { status: 400 });

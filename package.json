@@ -8,16 +8,17 @@
     "start": "next start",
     "lint": "next lint",
     "push:test": "tsx scripts/test-push.ts",
-    "pages:build": "npx @cloudflare/next-on-pages",
-    "pages:preview": "wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat"
+    "cf:build": "opennextjs-cloudflare build",
+    "cf:preview": "opennextjs-cloudflare build && wrangler dev",
+    "cf:deploy": "opennextjs-cloudflare build && wrangler deploy"
   },
   "dependencies": {
-    "next": "^15.0.3",
+    "next": "^15.5.18",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@cloudflare/next-on-pages": "^1.13.7",
+    "@opennextjs/cloudflare": "^1.0.0",
     "@types/node": "^22.9.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
@@ -26,6 +27,6 @@
     "tailwindcss": "^3.4.15",
     "tsx": "^4.19.2",
     "typescript": "^5.6.3",
-    "wrangler": "^3.86.0"
+    "wrangler": "^4.0.0"
   }
 }

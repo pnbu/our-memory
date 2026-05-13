@@ -3,8 +3,6 @@ import { COOKIE_NAME, verifySessionToken } from "@/lib/auth";
 import { getRecipe } from "@/lib/recipes";
 import { wxpush } from "@/lib/wxpusher";
 
-export const runtime = "edge";
-
 export async function POST(req: Request) {
   const cookie = req.headers.get("cookie") || "";
   const match = cookie.match(new RegExp(`${COOKIE_NAME}=([^;]+)`));
